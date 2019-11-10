@@ -1,0 +1,47 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class DayOfTheProgrammer {
+
+    // Complete the dayOfProgrammer function below.
+    static String dayOfProgrammer(int year) {
+        String leapYear = "12.09.";
+        String nonLeapYear = "13.09.";
+        String result;
+        boolean isLeap = isLeapYear(year);
+        if(year == 1700 || year == 1800 || 1900 ){
+            result = leapYear + year;
+        }else if(year == 1918){
+            result = "26.09.1918";
+        }
+        else if (isLeap) {
+            result = leapYear + year;
+        } else {
+            result = nonLeapYear + year;
+        }
+        return result;
+    }
+
+    public static boolean isLeapYear(int year){
+        if(year%400==0){
+            return true;
+        }else if(year%4==0 && year%100!=0){
+            return true;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int year = Integer.parseInt(bufferedReader.readLine().trim());
+
+        String result = dayOfProgrammer(year);
+        System.out.println(result);
+        bufferedReader.close();
+    }
+}
